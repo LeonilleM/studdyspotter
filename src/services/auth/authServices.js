@@ -1,6 +1,11 @@
 import { supabase } from '../../services/supabaseClient';
 
-// Function to sign in user
+/**
+ * 
+ * @param {*} email 
+ * @param {*} password 
+ * @returns 
+ */
 export const signIn = async (email, password) => {
     try {
         const { data, error } = await supabase.auth.signInWithPassword({
@@ -25,14 +30,26 @@ export const signIn = async (email, password) => {
     }
 }
 
-// Function to sign up user
-export const signUp = async (email, first_name, last_name, password) => {
-
-    // Do a Try Catch block to catch any errors
+/**
+ * 
+ * @param {*} email 
+ * @param {*} password 
+ * @param {*} first_name 
+ * @param {*} last_name 
+ * @returns 
+ * Function to sign up user with email and password
+ */
+export const signUp = async (email, password, first_name, last_name) => {
     try {
-        const { data, error } = await supabase.auth.signUp({
+        const { data, error } = await supabase.auth.signUp({ // Sign up user
             email,
-            password
+            password,
+            options: { // Additional data to be stored in the profile table
+                data: {
+                    first_name,
+                    last_name
+                }
+            }
         });
 
         if (error) {
@@ -40,39 +57,8 @@ export const signUp = async (email, first_name, last_name, password) => {
             return { error };
         }
 
-        console.log("Successfully signed up");
-
-        // After using Supabase sign up w/ auth, we need to insert the user's profile data
-        if (data && data.user) {
-            const userId = data.user.id; // Get the user's ID
-            const profileData = await insertProfileData(userId, email, first_name, last_name); // Insert the user's profile data
-            return { data, profileData };
-        }
-
-
-    } catch (error) {
-        console.error('Unexpected Error:', error);
-        return { error };
-    }
-}
-
-// Helper function to insert user profile data
-const insertProfileData = async (userId, email, first_name, last_name) => {
-    try {
-        const { data, error } = await supabase
-            .from('profile')
-            .insert([
-                { user_id: userId, email: email, first_name: first_name, last_name: last_name, created_at: new Date() }
-            ]);
-
-        if (error) {
-            console.log('Insert Profile Data Error:', error.message);
-            return { error };
-        } else {
-            // If successful, log that the data was inserted
-            console.log("Profile data inserted");
-            return { data };
-        }
+        console.log("Successfully signed up:", data);
+        return { data };
     } catch (error) {
         console.error('Unexpected Error:', error);
         return { error };
