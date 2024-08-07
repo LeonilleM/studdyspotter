@@ -12,11 +12,11 @@ function App() {
   return (
     <div className="App">
       {shouldShowNavbar && <Navbar />}
+      {shouldShowNavbar && <UserProfile />}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
-        <Route path="/user" element={<UserProfile />} />
       </Routes>
     </div>
   )

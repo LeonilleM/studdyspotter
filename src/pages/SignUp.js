@@ -1,7 +1,24 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { signUp } from '../services/auth/authServices';
 
 function SignUp() {
+
+
+    const submitSignUp = async (e) => {
+        e.preventDefault()
+        const email = document.getElementById('email').value
+        const password = document.getElementById('password').value
+        const firstName = document.getElementById('firstName').value
+        const lastName = document.getElementById('lastName').value
+        const response = await signUp(email, password, firstName, lastName)
+        if (response.status === 200) {
+            console.log('Successfully signed up!')
+        } else {
+            console.log('Failed to sign up!')
+        }
+    }
+
     return (
         <div className="flex min h-screen">
             <div className="w-1/2 flex flex-col justify-center px-28 bg-white">
@@ -58,6 +75,7 @@ function SignUp() {
                         <button
                             className="bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                             type="submit"
+                            onClick={submitSignUp}
                         >
                             Sign Up
                         </button>

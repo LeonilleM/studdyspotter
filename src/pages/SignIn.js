@@ -1,11 +1,26 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Navigate } from 'react-router-dom'
+import { signIn } from '../services/auth/authServices'
 
 function SignIn() {
+
+    const submitSignIn = async (e) => {
+        e.preventDefault()
+        const email = document.getElementById('email').value
+        const password = document.getElementById('password').value
+        const response = await signIn(email, password)
+        if (response.status === 200) {
+            console.log('Successfully signed in!')
+            return <Navigate to="/"></Navigate>
+        } else {
+            console.log('Failed to sign in!')
+        }
+    }
+
     return (
         <div className="flex min h-screen">
-            <div className="w-1/2 bg-primary">
-            </div>
+            < div className="w-1/2 bg-primary" >
+            </div >
             <div className="w-1/2 flex flex-col justify-center px-28 bg-white">
                 <h1 className="text-6xl mb-4 text-secondary font-encode-sans">
                     Sign in
@@ -37,6 +52,7 @@ function SignIn() {
                         <button
                             className="bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                             type="submit"
+                            onClick={submitSignIn}
                         >
                             Sign Up
                         </button>
