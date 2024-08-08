@@ -63,7 +63,7 @@ function PostDetails({ locationDetails, onPrevious, onClose }) {
     };
 
     return (
-        <div>
+        <div className="p-4">
             <ImageUploader
                 images={images}
                 currentIndex={currentIndex}
@@ -75,7 +75,7 @@ function PostDetails({ locationDetails, onPrevious, onClose }) {
                 handleNextImage={handleNextImage}
                 handlePrevImage={handlePrevImage}
             />
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 gap-4 mt-4 items-center">
                 <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1 text-center" htmlFor="rating">
                         Rating
@@ -109,26 +109,24 @@ function PostDetails({ locationDetails, onPrevious, onClose }) {
                 </div>
             </div>
             <TagSelector selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
-            <div className="grid grid-cols-1 gap-4">
-                <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="description">
-                        Description
-                    </label>
-                    <input
-                        id="description"
-                        type="text"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        placeholder="Description"
-                        className="w-full border border-gray-300 rounded-lg px-4 py-2 text-center hover:border-primary transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary"
-                    />
-                </div>
+            <div className="mt-4">
+                <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="description">
+                    Description
+                </label>
+                <textarea
+                    id="description"
+                    type="text"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    placeholder="Description"
+                    className="w-full border border-gray-300 rounded-lg px-4 py-2  hover:border-primary transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary"
+                />
             </div>
             <div className="flex justify-between pt-4">
-                <button onClick={onPrevious} className="px-4 py-2 bg-gray-300 text-black font-bold rounded-lg hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition duration-300 ease-in-out">
+                <button onClick={onPrevious} className="px-6 py-2 bg-gray-300 text-black font-bold rounded-lg hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition duration-300 ease-in-out">
                     Previous
                 </button>
-                <button onClick={handleSubmit} className="px-4 py-2 bg-secondary text-white font-bold rounded-lg hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition duration-300 ease-in-out">
+                <button onClick={handleSubmit} className="px-6 py-2 bg-primary text-white font-bold rounded-lg hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition duration-300 ease-in-out">
                     Submit
                 </button>
             </div>

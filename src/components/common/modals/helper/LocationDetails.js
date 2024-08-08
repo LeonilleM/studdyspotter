@@ -42,7 +42,7 @@ function LocationDetails({ onNext }) {
     };
 
     return (
-        <div>
+        <div className="p-4">
             <Select
                 options={[...studySpots, { label: 'Create New', value: 'create_new' }]}
                 onChange={(selectedOption) => {
@@ -64,46 +64,54 @@ function LocationDetails({ onNext }) {
             />
             {isCreatingNewSpot && (
                 <>
-                    <input
-                        id="new-location-name"
-                        type="text"
-                        value={location}
-                        onChange={(e) => setLocation(e.target.value)}
-                        placeholder="New Study Spot Name"
-                        className="w-full border border-gray-300 rounded-lg px-4 py-2 text-center hover:border-primary transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary"
-                    />
-                    <label className="block text-sm font-medium text-gray-700 mb-1 text-center" htmlFor="new-location-name">
-                        New Location Name
-                    </label>
-                    <input
-                        id="new-location-address"
-                        type="text"
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                        placeholder="New Study Spot Address"
-                        className="w-full border border-gray-300 rounded-lg px-4 py-2 text-center hover:border-primary transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary mt-4"
-                    />
-                    <label className="block text-sm font-medium text-gray-700 mb-1 text-center" htmlFor="new-location-address">
-                        New Address
-                    </label>
-                    <select
-                        id="select-category"
-                        value={selectedCategory}
-                        onChange={(e) => setSelectedCategory(e.target.value)}
-                        className="w-full border border-gray-300 rounded-lg px-4 py-2 text-center hover:border-primary transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary"
-                    >
-                        <option value="">Select</option>
-                        {locationCategory.map((category) => (
-                            <option key={category.id} value={category.id}>
-                                {category.name}
-                            </option>
-                        ))}
-                    </select>
+                    <div className="mt-4">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">New Location Name</label>
+                        <input
+                            id="new-location-name"
+                            type="text"
+                            value={location}
+                            onChange={(e) => setLocation(e.target.value)}
+                            placeholder="New Study Spot Name"
+                            className="w-full border border-gray-300 rounded-lg px-4 py-2 hover:border-primary transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary"
+                        />
+                    </div>
+                    <div className="mt-4">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">New Address</label>
+                        <input
+                            id="new-location-address"
+                            type="text"
+                            value={address}
+                            onChange={(e) => setAddress(e.target.value)}
+                            placeholder="New Study Spot Address"
+                            className="w-full border border-gray-300 rounded-lg px-4 py-2 hover:border-primary transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary"
+                        />
+                    </div>
+                    <div className="mt-4">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                        <select
+                            id="select-category"
+                            value={selectedCategory}
+                            onChange={(e) => setSelectedCategory(e.target.value)}
+                            className="w-full border border-gray-300 rounded-lg px-4 py-2 hover:border-primary transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary"
+                        >
+                            <option value="">Select</option>
+                            {locationCategory.map((category) => (
+                                <option key={category.id} value={category.id}>
+                                    {category.name}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
                 </>
             )}
-            <button onClick={handleNext} className="px-12 py-2 bg-secondary text-white font-bold rounded-lg hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition duration-300 ease-in-out">
-                Next
-            </button>
+            <div className="flex justify-end mt-6">
+                <button
+                    onClick={handleNext}
+                    className="px-6 py-2 bg-primary text-white font-bold rounded-lg hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition duration-300 ease-in-out"
+                >
+                    Next
+                </button>
+            </div>
         </div>
     );
 }
