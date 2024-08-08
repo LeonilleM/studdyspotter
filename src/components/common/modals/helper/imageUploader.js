@@ -1,3 +1,4 @@
+// imageUploader.js
 import React from 'react';
 
 const ImageUploader = ({ images, setImages, currentIndex, dragging, handleDrop, handleDragOver, handleDragLeave, handleFileChange, handleNextImage, handlePrevImage }) => {

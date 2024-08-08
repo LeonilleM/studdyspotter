@@ -4,6 +4,7 @@ import HomePage from './pages/home';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
+import { AuthProvider } from './services/auth/authContext';
 
 function App() {
   const location = useLocation();
@@ -25,7 +26,9 @@ function App() {
 function AppWrapper() {
   return (
     <BrowserRouter>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </BrowserRouter>
   );
 }

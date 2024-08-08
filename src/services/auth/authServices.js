@@ -57,6 +57,13 @@ export const signUp = async (email, password, first_name, last_name) => {
             return { error };
         }
 
+        if (data && data.user) {
+            const userSession = data
+            sessionStorage.setItem('user', JSON.stringify(userSession.user));
+            localStorage.setItem('authToken', userSession.access_token);
+            return { data };
+        }
+
         console.log("Successfully signed up:", data);
         return { data };
     } catch (error) {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getTags } from '../../../../services/post/postServices';
+import { getTags } from '../../../../services/post/getServices';
 
 const TagSelector = ({ selectedTags, setSelectedTags }) => {
     const [availableTags, setAvailableTags] = useState([]);
@@ -22,8 +22,16 @@ const TagSelector = ({ selectedTags, setSelectedTags }) => {
         setAvailableTags([...availableTags, tag]);
     };
 
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Prevent the default action of the Enter key
+        }
+    };
+
     return (
-        <div className="font-secondary font-open-sans py-2">
+        <div className="font-secondary font-open-sans py-2"
+            onKeyDown={handleKeyDown}
+        >
             <h1 className="text-light">Select tags below</h1>
             <div className="flex flex-wrap gap-2">
                 {availableTags.map(tag => (
