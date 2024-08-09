@@ -43,7 +43,7 @@ function LocationDetails({ onNext }) {
     };
 
     return (
-        <div className="p-4">
+        <div className="p-4 h-screen">
             <Select
                 options={[...studySpots, { label: 'Create New', value: 'create_new' }]}
                 onChange={(selectedOption) => {

@@ -13,7 +13,7 @@ function Event() {
             const data = await fetchPost();
             if (data) {
                 const sortedData = data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-                setPosts(data);
+                setPosts(sortedData);
             }
         };
 
