@@ -1,3 +1,4 @@
+// PostDetails.js
 import React, { useState, useEffect } from 'react';
 import useImageUpload from '../../../hooks/useImageUpload';
 import ImageUploader from './imageUploader';
@@ -7,15 +8,9 @@ import { getCostRating } from '../../../../services/post/getServices';
 
 function PostDetails({ locationDetails, onPrevious, onClose }) {
     const {
-        images,
-        currentIndex,
-        dragging,
-        handleDrop,
-        handleDragOver,
-        handleDragLeave,
-        handleFileChange,
-        handleNextImage,
-        handlePrevImage
+        images, setImages, currentIndex, dragging,
+        handleDrop, handleDragOver, handleDragLeave,
+        handleNextImage, handlePrevImage
     } = useImageUpload();
 
     const [rating, setRating] = useState('');
@@ -44,10 +39,10 @@ function PostDetails({ locationDetails, onPrevious, onClose }) {
         }
 
         const user_id = JSON.parse(sessionStorage.getItem('user')).id;
+        console.log('User ID:', user_id);
 
         const post = {
             ...locationDetails,
-            user_id: user_id,
             cost_rating: selectedCostRating,
             star_rating: rating,
             description: description,
@@ -55,7 +50,7 @@ function PostDetails({ locationDetails, onPrevious, onClose }) {
         };
 
         try {
-            await createPost(post, images);
+            await createPost(post, images, user_id);
             onClose();
         } catch (error) {
             console.error('Error creating post:', error);
@@ -66,12 +61,12 @@ function PostDetails({ locationDetails, onPrevious, onClose }) {
         <div className="p-4">
             <ImageUploader
                 images={images}
+                setImages={setImages}
                 currentIndex={currentIndex}
                 dragging={dragging}
                 handleDrop={handleDrop}
                 handleDragOver={handleDragOver}
                 handleDragLeave={handleDragLeave}
-                handleFileChange={handleFileChange}
                 handleNextImage={handleNextImage}
                 handlePrevImage={handlePrevImage}
             />

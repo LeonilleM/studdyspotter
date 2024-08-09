@@ -1,7 +1,7 @@
+// createProcessModal.js
 import React, { useState } from 'react';
 import LocationDetails from './helper/LocationDetails';
 import PostDetails from './helper/PostDetails';
-
 
 function CreateProcessModal({ isOpen, closeModal }) {
     const [currentStep, setCurrentStep] = useState(0);

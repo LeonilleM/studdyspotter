@@ -1,3 +1,4 @@
+// LocationDetails.js
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { getStudySpots, getLocationCategory } from '../../../../services/post/getServices';
@@ -71,7 +72,7 @@ function LocationDetails({ onNext }) {
                             type="text"
                             value={location}
                             onChange={(e) => setLocation(e.target.value)}
-                            placeholder="New Study Spot Name"
+                            placeholder="ex. Odegaard Library"
                             className="w-full border border-gray-300 rounded-lg px-4 py-2 hover:border-primary transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary"
                         />
                     </div>
@@ -82,7 +83,7 @@ function LocationDetails({ onNext }) {
                             type="text"
                             value={address}
                             onChange={(e) => setAddress(e.target.value)}
-                            placeholder="New Study Spot Address"
+                            placeholder="ex. 4060 George Washington Lane Northeast, Seattle, WA "
                             className="w-full border border-gray-300 rounded-lg px-4 py-2 hover:border-primary transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary"
                         />
                     </div>

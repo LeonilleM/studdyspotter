@@ -26,7 +26,10 @@ export const fetchPost = async () => {
                     tags:tag_id (
                         name
                     )
-                )
+                ),
+                post_images:post_images (
+                    image_url
+            )
             `)
         if (error) {
             throw error

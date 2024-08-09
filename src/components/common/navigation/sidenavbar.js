@@ -1,21 +1,21 @@
-import React, { useState } from 'react'
-import CreateProcessModal from '../modals/createProcessModal.js'
-import { useAuth } from '../../../services/auth/authContext.js'
-import { NavLink } from 'react-router-dom'
+import React, { useState } from 'react';
+import CreateProcessModal from '../modals/createProcessModal';
+import { useAuth } from '../../../services/auth/authContext';
+import { NavLink } from 'react-router-dom';
 
 function SideNavbar() {
-    const { user, logout } = useAuth()
-    const [isCreatePostOpen, setIsCreatePostOpen] = useState(false)
+    const { user, logout } = useAuth();
+    const [isCreatePostOpen, setIsCreatePostOpen] = useState(false);
 
-    // Handles openning modal    
+    // Handles opening modal    
     const handleOpenModal = () => {
-        setIsCreatePostOpen(true)
-    }
+        setIsCreatePostOpen(true);
+    };
 
     // Handles closing modal
     const handleCloseModal = () => {
-        setIsCreatePostOpen(false)
-    }
+        setIsCreatePostOpen(false);
+    };
 
     return (
         <div>
@@ -34,27 +34,30 @@ function SideNavbar() {
                         </li>
                         <hr />
                         {user
-                            ?
-                            <li
-                                className="mx-8 flex items-center gap-4 py-3 px-3 rounded-2xl hover:bg-secondary  transition ease-in-out duration-500"
-                                onClick={handleOpenModal}
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-12 w-12 text-white"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                                    />
-                                </svg>
-                                Create
-                            </li>
+                            ? (
+                                <>
+                                    <li
+                                        className="mx-8 flex items-center gap-4 py-3 px-3 rounded-2xl hover:bg-secondary  transition ease-in-out duration-500"
+                                        onClick={handleOpenModal}
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="h-12 w-12 text-white"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                                            />
+                                        </svg>
+                                        Create
+                                    </li>
+                                </>
+                            )
                             : <li className="mx-8 flex items-center gap-4 py-3 px-3 hover:rounded-2x">
                                 Log in to post
                             </li>
@@ -76,8 +79,7 @@ function SideNavbar() {
                                 </svg>
                                 <span className="text-2xl">Logout</span>
                             </div>
-                            :
-                            <NavLink
+                            : <NavLink
                                 className="flex flex-row items-center text-center p-3 hover:bg-secondary transition duration-300 ease-in-out roudned"
                                 to="/"
                             >
@@ -98,7 +100,7 @@ function SideNavbar() {
             </aside >
             <CreateProcessModal isOpen={isCreatePostOpen} closeModal={handleCloseModal} />
         </div >
-    )
+    );
 }
 
-export default SideNavbar
+export default SideNavbar;

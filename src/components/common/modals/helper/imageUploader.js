@@ -2,6 +2,12 @@
 import React from 'react';
 
 const ImageUploader = ({ images, setImages, currentIndex, dragging, handleDrop, handleDragOver, handleDragLeave, handleFileChange, handleNextImage, handlePrevImage }) => {
+
+    const onFileChange = (event) => {
+        const newImages = Array.from(event.target.files);
+        setImages((prevImages) => [...prevImages, ...newImages]);
+    };
+
     return (
         <div
             className={`relative bg-gray-100 border border-dashed border-gray-300 rounded-lg h-60 flex items-center justify-center hover:border-secondary hover:scale-105 duration-500 transition ease-in-out focus-within:border-primary focus-within:scale-105 ${dragging ? 'bg-gray-200' : ''}`}
@@ -12,7 +18,7 @@ const ImageUploader = ({ images, setImages, currentIndex, dragging, handleDrop, 
             {images.length > 0 ? (
                 <div className="relative w-full h-full">
                     <img
-                        src={images[currentIndex]}
+                        src={URL.createObjectURL(images[currentIndex])}
                         alt={`Uploaded ${currentIndex + 1}`}
                         className="w-full h-full object-cover rounded-lg"
                     />
@@ -69,7 +75,7 @@ const ImageUploader = ({ images, setImages, currentIndex, dragging, handleDrop, 
                         accept="image/*"
                         className="hidden"
                         multiple
-                        onChange={handleFileChange}
+                        onChange={onFileChange}  // Updated to handle multiple files
                     />
                 </label>
             )}
