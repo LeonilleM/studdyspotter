@@ -2,20 +2,35 @@ import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { fetchPost } from '../../services/post/getServices';
 import { formatDistanceToNow } from 'date-fns';
+import Filter from './helper/Filter';
 
 function Event() {
     const [posts, setPosts] = useState([]);
 
+    // Retreives the posts from the database
     useEffect(() => {
         const fetchData = async () => {
             const data = await fetchPost();
             if (data) {
+                const sortedData = data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
                 setPosts(data);
             }
         };
 
         fetchData();
     }, []);
+
+    // This function sorts the posts based on the order parameter
+    const sortPosts = (order) => {
+        const sorted = [...posts].sort((a, b) => {
+            if (order === 'desc') {
+                return new Date(b.created_at) - new Date(a.created_at);
+            } else {
+                return new Date(a.created_at) - new Date(b.created_at); // asc sort
+            }
+        });
+        setPosts(sorted);
+    }
 
     const renderPrice = (cost_rating) => {
         const dollarSigns = [];
@@ -45,11 +60,16 @@ function Event() {
         return stars;
     };
 
+    // Used to sort the post
+
+
     return (
         <div className="sm:ml-80 py-20 md:px-28 px-6 flex flex-col space-y-6 text-secondary sm:w-3/4">
             <div className="md:text-4xl text-3xl font-encode-sans font-semibold">
                 <h1>Recent Posts</h1>
             </div>
+            <Filter sortPosts={sortPosts} />
+
             {posts.map((post) => (
                 <div key={post.id} className="flex flex-col border-secondary">
                     <div className="flex flex-col justify-center items-center">
@@ -83,6 +103,14 @@ function Event() {
                                     {post.study_spots.address}
                                 </p>
                                 <div className="flex">{renderRating(post.star_rating)}</div>
+                            </div>
+                            <div className="flex flex-row justify-between">
+                                <p className="text-xs md:text-base italic">
+                                    Tags: {post.tags_list}
+                                </p>
+                                <p className="text-xs md:text-base italic">
+                                    Category: {post.study_spots.location_category.name}
+                                </p>
                             </div>
                             <p className="text-xs md:text-base">{post.description}</p>
                             <p className="text-xs md:text-base italic pt-4">

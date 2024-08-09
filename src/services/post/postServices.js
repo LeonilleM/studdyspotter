@@ -79,7 +79,6 @@ export const createPost = async (post, images, userId) => {
         const imageUrls = await Promise.all(images.map(async (image, index) => {
             const fileExtension = image.name.split('.').pop();  // Get the extension
             const fileName = `${userId}/${postId}/image_${index + 1}.${fileExtension}`;
-            console.log("Uploading file to:", fileName);  // Log the file path
 
             const { error: uploadError } = await supabase.storage
                 .from('post_image')
