@@ -72,8 +72,8 @@ function Event() {
 
             {posts.map((post) => (
                 <div key={post.id} className="flex flex-col border-secondary">
-                    <div className="flex flex-col justify-center items-center">
-                        <div className="flex flex-row gap-2 py-4 w-[38rem]">
+                    <div className="flex flex-col justify-center sm:items-center">
+                        <div className="flex flex-row gap-2 py-4 sm:w-[38rem]">
                             <NavLink to="#">
                                 <img
                                     className="w-10 h-10 rounded-full bg-gray-300"
@@ -92,7 +92,7 @@ function Event() {
                         </div>
                     </div>
                     <div className="items-center flex flex-col pt-4">
-                        <div className="flex flex-col space-y-4 w-[38rem]">
+                        <div className="flex flex-col space-y-4 sm:w-[38rem]">
                             <div className="flex justify-between">
                                 <h1 className="font-encode-sans text-2xl">{post.study_spots.name}</h1>
                                 <div className="flex">{renderPrice(post.cost_rating)}</div>
@@ -147,7 +147,7 @@ const ImagesCarousel = ({ postImages }) => {
     };
 
     return (
-        <div className="relative w-[38rem] overflow-hidden rounded-lg">
+        <div className="relative sm:w-[38rem] overflow-hidden rounded-lg">
             <div
                 className="flex transition-transform duration-500 "
                 style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}

@@ -23,9 +23,9 @@ function SignIn() {
     };
 
     return (
-        <div className="flex min-h-screen">
+        <div className="flex min-h-screen sm:flex-row flex-col">
             <div className="w-1/2 bg-primary"></div>
-            <div className="w-1/2 flex flex-col justify-center px-28 bg-white">
+            <div className="sm:w-1/2 flex flex-col justify-center px-28 bg-white sm:py-0 py-24">
                 <h1 className="text-6xl mb-4 text-secondary font-encode-sans">
                     Sign in
                 </h1>
