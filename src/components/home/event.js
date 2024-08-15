@@ -100,7 +100,14 @@ function Event() {
                             <div className="flex flex-row justify-between">
                                 <p className="text-xs md:text-base">
                                     <span className="font-bold">Address: </span>
-                                    {post.study_spots.address}
+                                    <a
+                                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(post.study_spots.address)}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-blue-500 hover:underline"
+                                    >
+                                        {post.study_spots.address}
+                                    </a>
                                 </p>
                                 <div className="flex">{renderRating(post.star_rating)}</div>
                             </div>
