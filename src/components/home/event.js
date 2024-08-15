@@ -149,7 +149,7 @@ const ImagesCarousel = ({ postImages }) => {
     return (
         <div className="relative w-[38rem] overflow-hidden rounded-lg">
             <div
-                className="flex transition-transform duration-500"
+                className="flex transition-transform duration-500 "
                 style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}
             >
                 {postImages.map((image, index) => (
@@ -157,7 +157,7 @@ const ImagesCarousel = ({ postImages }) => {
                         <img
                             src={image.image_url}
                             alt={`image${index + 1}`}
-                            className="h-full w-full object-cover border bg-gray-300 rounded-lg"
+                            className="h-full w-full object-cover border bg-gray-300 rounded-lg hover:scale-125 transition ease-in-out duration-300"
                         />
                     </div>
                 ))}
