@@ -58,7 +58,7 @@ function PostDetails({ locationDetails, onPrevious, onClose }) {
     };
 
     return (
-        <div className="p-4">
+        <div className="p-4 max-[80vh]">
             <ImageUploader
                 images={images}
                 setImages={setImages}

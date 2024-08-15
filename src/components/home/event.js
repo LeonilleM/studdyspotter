@@ -155,20 +155,27 @@ const ImagesCarousel = ({ postImages }) => {
                     </div>
                 ))}
             </div>
-            <button
-                onClick={prevImage}
-                className="absolute top-1/2 transform -translate-y-1/2 left-4 bg-gray-800 text-white p-2 rounded-full"
-            >
-                ‹
-            </button>
-            <button
-                onClick={nextImage}
-                className="absolute top-1/2 transform -translate-y-1/2 right-4 bg-gray-800 text-white p-2 rounded-full"
-            >
-                ›
-            </button>
+            {
+                // Only show the buttons if there is more than one image
+                postImages.length > 1 && (
+                    <>
+                        <button
+                            onClick={prevImage}
+                            className="absolute top-1/2 transform -translate-y-1/2 left-4 bg-gray-800 text-white p-2 rounded-full"
+                        >
+                            ‹
+                        </button>
+                        <button
+                            onClick={nextImage}
+                            className="absolute top-1/2 transform -translate-y-1/2 right-4 bg-gray-800 text-white p-2 rounded-full"
+                        >
+                            ›
+                        </button>
+                    </>
+                )
+            }
             <div className="flex space-x-2 mt-4 justify-center">
-                {postImages.map((_, index) => (
+                {postImages.length > 1 && postImages.map((_, index) => (
                     <span
                         key={index}
                         className={`indicator w-2 h-2 rounded-full ${index === currentImageIndex ? 'bg-blue-500' : 'bg-gray-400'
