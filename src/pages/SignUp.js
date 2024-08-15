@@ -38,7 +38,7 @@ function SignUp() {
                     <div className="mb-4 font-open-sans">
                         <label className="text-secondary font-light mb-1" htmlFor="email">UW Email</label>
                         <input
-                            className="shadow appearance-none border rounded-md w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow appearance-none border rounded-md w-full py-3 px-3 text-gray-700 leading-tight focus:outline-primary focus:shadow-outline"
                             id="email"
                             type="email"
                             placeholder="UW Email"
