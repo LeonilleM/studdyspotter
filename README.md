@@ -1,3 +1,7 @@
+#View the website at Vercel, but PLEASE BE WARRY it may be down due to Supabase deleting it's database
+
+https://studdyspotter.vercel.app/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
