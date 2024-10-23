@@ -1,4 +1,4 @@
-#View the website at Vercel, but PLEASE BE WARRY it may be down due to Supabase deleting it's database
+# View the website at Vercel, but PLEASE BE WARRY it may be down due to Supabase deleting it's database
 
 https://studdyspotter.vercel.app/
 
